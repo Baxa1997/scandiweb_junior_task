@@ -3,9 +3,9 @@
 class Dvd extends Product {
     private string $size;
     
-    public function __construct(string $sku, string $name, string $price, string $size) {
-        parent::__construct($sku, $name, $price);
-        $this->size = $size;
+    public function __construct(array $productsData) {
+        parent::__construct($productsData['sku'], $productsData['name'], $productsData['price']);
+        $this->size = $productsData['size'];
     }
     
     public function insertIntoDatabase(PDO $conn): bool {

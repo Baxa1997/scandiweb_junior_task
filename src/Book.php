@@ -4,9 +4,9 @@
 class Book extends Product {
     private string $weight;
 
-    public function __construct(string $sku, string $name, string $price, string $weight) {
-        parent::__construct($sku, $name, $price);
-        $this->weight = $weight;
+    public function __construct(array $productsData) {
+        parent::__construct($productsData['sku'], $productsData['name'], $productsData['price']);
+        $this->weight = $productsData['weight'];
     }
 
     public function insertIntoDatabase(PDO $conn): bool {

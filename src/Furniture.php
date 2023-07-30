@@ -5,11 +5,11 @@ class Furniture extends Product {
     private string $height;
     private string $length;
     
-    public function __construct(string $sku, string $name, string $price, string $width, string $height, string $length) {
-            parent::__construct($sku, $name, $price);
-            $this->width = $width;
-            $this->height = $height;
-            $this->length = $length;
+    public function __construct(array $productsData) {
+            parent::__construct($productsData['sku'], $productsData['name'], $productsData['price']);
+            $this->width = $productsData['width'];
+            $this->height = $productsData['height'];
+            $this->length = $productsData['length'];
     }
     public function insertIntoDatabase(PDO $conn): bool {
         $sql = 'INSERT INTO `furniture`(id, sku, name, price, width, height, length) VALUES (null, :sku, :name, :price, :width, :height, :length)';

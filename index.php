@@ -17,7 +17,7 @@ spl_autoload_register(function ($class) {
 $objDb = new DbConnection();
 $conn = $objDb->connect();
 $method = $_SERVER['REQUEST_METHOD'];
-$products = json_decode(file_get_contents('php://input'));
+$productsData = json_decode(file_get_contents('php://input'), true);
 
 
 
@@ -28,8 +28,8 @@ switch($method) {
     break;
 
   case 'POST': 
-    $product = ProductFactory::createProduct($products->type, $products->sku, $products->name, $products->price, $products->size, $products->weight, $products->width, $products->height, $products->length);
-
+    var_dump($productsData);
+    $product = ProductFactory::createProduct($productsData['type'], $productsData);
     if ($product !== null && $product->insertIntoDatabase($conn)) {
         $response = ['status' => 1, 'message' => 'Product created'];
     }
@@ -38,8 +38,8 @@ switch($method) {
     
     case 'DELETE':
         $sql = '';
-        foreach($products as $product) {
-            if(ProductFactory::deleteProduct($product->type, $product->id)) {
+        foreach($productsData as $product) {
+            if(ProductFactory::deleteProduct($product['type'], $product['id'])) {
                 $response = ['status' => 1, 'message' => 'Products are deleted'];
             } else {
                 $response = ['status' => 0, 'message' => 'Error in deleting products'];
