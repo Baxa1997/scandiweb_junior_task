@@ -3,7 +3,7 @@
     class DbConnection {
         public $server ='localhost';
         public $dbname ='adminbah_scandiweb_products';
-        public $user ='adminbah';
+        public $user ='adminbah_baha';
         public $pass ='7116812Baxa';
         
         public function connect () {
