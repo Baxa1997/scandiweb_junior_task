@@ -2,8 +2,8 @@
 <?php
     class DbConnection {
         public $server ='localhost';
-        public $dbname ='shoxdevu_scandiweb_products';
-        public $user ='shoxdevu_baha';
+        public $dbname ='adminbah_scandiweb_products';
+        public $user ='adminbah';
         public $pass ='7116812Baxa';
         
         public function connect () {
